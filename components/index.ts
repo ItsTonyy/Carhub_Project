@@ -2,10 +2,19 @@ import Hero from "./Hero"
 import CustomButton from "./CustomButton"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import CarCatalogue from "./CarCatalogue/CarCatalogue"
+import CustomFilter from "./CarCatalogue/CustomFilter"
+import SearchBar from "./CarCatalogue/SearchBar"
+import SearchManufacturer from "./CarCatalogue/SearchManufacturer"
+
 
 export {
   Hero,
   CustomButton,
   Navbar,
-  Footer
+  Footer,
+  CarCatalogue,
+  CustomFilter,
+  SearchBar,
+  SearchManufacturer
 }
