@@ -1,7 +1,6 @@
 import { Hero, Navbar, Footer, CarCatalogue } from '../components'
 
-
-export default function Home() {
+export default async function Home() {
   return (
     <main className="overflow-hidden">
       <Navbar />
