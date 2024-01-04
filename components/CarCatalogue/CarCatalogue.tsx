@@ -1,5 +1,5 @@
 import React from 'react'
-import { CustomFilter, SearchBar } from '..'
+import { CustomFilter, SearchBar, CarCard } from '..'
 import { fetchCars } from '../../utils'
 
 const CarCatalogue = async () => {
@@ -23,7 +23,13 @@ const CarCatalogue = async () => {
         </div>
       </div>
       {!isDataEmpty ? (
-        <section>We have cars!</section>
+        <section>
+          <div className='home__cars-wrapper'>
+            {allCars?.map((car) => (
+              <CarCard car={car} />
+            ))}
+          </div>
+        </section>
       ) : (
         <div className='home__error-container'>
           <h2 className='text-black text-xl font-bold'>No Results</h2>
