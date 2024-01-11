@@ -1,22 +1,43 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { SearchManufacturer } from '..'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState('')
   const [model, setModel] = useState('')
+  const router = useRouter()
+
+  const updateSearchParams = (manufacturer: string, model: string) => {
+    const searchParams = new URLSearchParams(window.location.search)
+
+    model ? searchParams.set('model', model) : searchParams.delete('model')
+    model
+      ? searchParams.set('manufacturer', manufacturer)
+      : searchParams.delete('manufacturer')
+
+    const newPathName = `${window.location.pathname}?${searchParams.toString}`
+
+    router.push(newPathName)
+  }
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    
+    e.preventDefault()
+
+    if (manufacturer === '' || model === '') {
+      return alert('please fill in the search bar')
+    }
+
+    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase())
   }
 
   const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
     <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
       <Image
-        src='/magnifying-glass.svg'
-        alt='magnifying glass'
+        src={'/magnifying-glass.svg'}
+        alt={'magnifying glass'}
         width={40}
         height={40}
         className='object-contain'
@@ -51,7 +72,9 @@ const SearchBar = () => {
           placeholder='Tiguan'
           className='searchbar__input'
         />
+        <SearchButton otherClasses='sm:hidden' />
       </div>
+      <SearchButton otherClasses='max-sm:hidden' />
     </form>
   )
 }
