@@ -2,19 +2,30 @@
 
 import { useState, Fragment } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { Listbox, Transition } from '@headlessui/react'
 import { customFilterProps } from '../../types'
+import { useRouter } from 'next/navigation'
+import { updateSearchParams } from '../../utils'
 
-const CustomFilter = ({title, options}: customFilterProps) => {
+const CustomFilter = ({ title, options }: customFilterProps) => {
+  const router = useRouter()
   const [selected, setSelected] = useState(options[0])
+
+  const handleUpdateSearchParams = (e: {type: string, value: string}) => {
+    const newPathName = updateSearchParams(title, e.value.toLowerCase())
+
+    router.push(newPathName, {scroll: false})
+  }
 
   return (
     <div className='w-fit'>
-      <Listbox
-        value={selected}
-        onChange={(e) => setSelected(e)}
-      >
+      <Listbox value={selected}
+       onChange={(e) => {
+        setSelected(e)
+        handleUpdateSearchParams(e)
+       }}
+       
+       >
         <div className='relative w-fit z-10'>
           <Listbox.Button className='custom-filter__btn'>
             <span className='block truncate'>{selected.title}</span>
@@ -27,14 +38,36 @@ const CustomFilter = ({title, options}: customFilterProps) => {
               alt='chevronUpDown'
             />
           </Listbox.Button>
-          
-          <Transition 
-          as={Fragment}
-          leave='transition ease-in duration-100'
-          leaveFrom='opacity-100'
-          leaveTo='opacity-0'
-          >
 
+          <Transition
+            as={Fragment}
+            leave='transition ease-in duration-100'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'
+          >
+            <Listbox.Options className='custom-filter__options'>
+              {options.map((option) => (
+                <Listbox.Option
+                  key={option.title}
+                  value={option}
+                  className={({ active }) =>
+                    `relative cursor-default select-none py-2 px-4 ${
+                      active ? 'bg-primary-blue text-white' : 'text-gray-900'
+                    }`
+                  }
+                >
+                  {({ selected }) => (
+                    <span
+                      className={`block truncate ${
+                        selected ? 'font-bold' : 'font-normal'
+                      }`}
+                    >
+                      {option.title}
+                    </span>
+                  )}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
           </Transition>
         </div>
       </Listbox>
