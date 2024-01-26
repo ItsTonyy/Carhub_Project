@@ -6,8 +6,6 @@ import { Combobox, Transition } from '@headlessui/react'
 import { SearchManufaturerProps } from '../../types'
 import { manufacturers } from '../../constants'
 
-
-
 const SearchManufacturer = ({
   manufacturer,
   setManufacturer,

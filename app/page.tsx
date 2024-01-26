@@ -28,8 +28,8 @@ export default async function Home({ searchParams }: HomeProps) {
           <SearchBar />
 
           <div className='home__filter-container'>
-            <CustomFilter title='fuel' options={fuels}/>
-            <CustomFilter title='year' options={yearsOfProduction}/>
+            <CustomFilter title='fuel' options={fuels} />
+            <CustomFilter title='year' options={yearsOfProduction} />
           </div>
         </div>
 
@@ -41,9 +41,9 @@ export default async function Home({ searchParams }: HomeProps) {
               ))}
             </div>
 
-            <ShowMore 
-            pageNumber={(searchParams.limit || 10) / 10}
-            isNext={(searchParams.limit || 10) > allCars.length}
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
             />
           </section>
         ) : (

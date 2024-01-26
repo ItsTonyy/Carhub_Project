@@ -12,7 +12,6 @@ const SearchBar = () => {
   const router = useRouter()
 
   const updateSearchParams = (model: string, manufacturer: string) => {
-
     // Create a new URLSearchParams object using the current URL search parameters
     const searchParams = new URLSearchParams(window.location.search)
 
@@ -33,7 +32,7 @@ const SearchBar = () => {
     // Generate the new pathname with the updated search parameters
     const newPathName = `${window.location.pathname}?${searchParams.toString()}`
 
-    router.push(newPathName, {scroll: false})
+    router.push(newPathName, { scroll: false })
   }
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +46,7 @@ const SearchBar = () => {
   }
 
   const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
-    <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
+    <button type='submit' className={`-ml-5 z-10 ${otherClasses}`}>
       <Image
         src={'/magnifying-glass.svg'}
         alt={'magnifying glass'}
