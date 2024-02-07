@@ -73,8 +73,8 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     </div>
 
                     {/* 3 Car images on modal*/}
-                    <div className='flex gap-3'>
-                      <div className='flex-1 relative w-full h-24 bg-gray-200 rounded-lg'>
+                    <div className='flex gap-3 flex-1'>
+                      <div className='relative w-full h-24 bg-gray-200 rounded-lg'>
                         <Image
                           src={generateCarImageUrl(car, '29')}
                           alt='car model'
@@ -84,7 +84,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                         />
                       </div>
 
-                      <div className='flex-1 relative w-full h-24 bg-gray-200 rounded-lg'>
+                      <div className='relative w-full h-24 bg-gray-200 rounded-lg'>
                         <Image
                           src={generateCarImageUrl(car, '33')}
                           alt='car model'
@@ -94,7 +94,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                         />
                       </div>
 
-                      <div className='flex-1 relative w-full h-24 bg-gray-200 rounded-lg'>
+                      <div className='relative w-full h-24 bg-gray-200 rounded-lg'>
                         <Image
                           src={generateCarImageUrl(car, '13')}
                           alt='car model'
